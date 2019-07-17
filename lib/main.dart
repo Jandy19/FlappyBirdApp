@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:flutter/gestures.dart';
 import 'Game.dart';
-import 'dart:async';
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
 import 'package:flame/util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'DeathScreen.dart';
+
 
 void main() async{
 
   Util flameUtil = Util();
   await flameUtil.fullScreen();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  DeathScreen.highScore = prefs.getInt("highScore");
+
   Flame.images.load("monkey.png");
+  Flame.images.load("background.png");
+
   bGame game = bGame();
-  runApp(game.widget);
+
   TapGestureRecognizer tapper = TapGestureRecognizer();
   tapper.onTapDown = game.onTapDown;
+
   runApp(game.widget);
+
   flameUtil.addGestureRecognizer(tapper);
+
 }

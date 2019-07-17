@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flame/sprite.dart';
+
 class Bird{
   double x,y,speed;
   Sprite bird;
@@ -14,7 +16,7 @@ class Bird{
   }
   void fall(){
     this.y+= this.speed;
-    if(this.speed<5){
+    if(this.speed<8){
       this.speed+=0.5;
     }
   }
@@ -27,7 +29,7 @@ class Bird{
     return this.y;
   }
   void render(Canvas canvas){
-    Rect birdRect = new Rect.fromLTWH(this.x, this.y, 50, 50);
+    Rect birdRect = new Rect.fromLTWH(this.x, this.y, 50, 43);
     this.bird.renderRect(canvas,birdRect);
   }
 
