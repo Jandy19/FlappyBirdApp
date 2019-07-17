@@ -52,27 +52,18 @@ class Pipe{
   }
   void render(Canvas canvas,Paint paint){
 
-    Rect rect = Rect.fromLTRB(x,0,x+width,y1);
-    Rect rect2 = Rect.fromLTRB(x,x,x+width,775);
+    Rect rect = Rect.fromLTWH(x,0,width,y1);
+    Rect rect2 = Rect.fromLTWH(x,y2,width,750-y2);
 
     paint.color = Colors.indigo;
     canvas.drawRect(rect,paint);
     canvas.drawRect(rect2,paint);
-
-    goldCoin.getSprite().renderRect(canvas,Rect.fromLTWH(x+5,y1+spacing/2,16,16));
-    counter+=1;
-    if(counter==20){
-      goldCoin.update(2);
-    }else if(counter==40){
-      goldCoin.update(3);
-    }else if(counter==60){
-      goldCoin.update(4);
-    }else if(counter==80){
-      goldCoin.update(5);
-    }else if(counter==100){
-      goldCoin.update(1);
-      counter = 1;
+    if(showCoin) {
+      goldCoin.getSprite().renderRect(
+          canvas, Rect.fromLTWH(x + 10, y1 + spacing / 2, 16, 16));
+      goldCoin.update(0.01);
     }
+
 
 
   }
