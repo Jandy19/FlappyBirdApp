@@ -52,23 +52,34 @@ class Background{
       bool restored = false;
       if(this.backgroundComponent.x<430&&this.backgroundComponent.x>-1280){
       this.backgroundComponent.render(canvas);
-        if(!restored) {
           canvas.restore();
-          restored =true;
-        }
+
       }if(this.backgroundComponent2.x<430&&this.backgroundComponent2.x>-1280){
         this.backgroundComponent2.render(canvas);
-        if(!restored&&this.backgroundComponent2.x>-1280+430){
           canvas.restore();
-        restored = true;
-      }
-        }
-        canvas.restore();
+
+
+    }
     }
 
   }
   void changeBackground(String link){
     background = Sprite(link);
+
+  }
+  void changeBackground2(int index){
+    if(index==0){
+      background = Sprite('longBack.png');
+      var background2 = Sprite('longBack2.png');
+      this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
+      this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
+    }else if(index==2){
+      background = Sprite('spaceBackground.png');
+      var background2 = Sprite('spaceBackground.png');
+      this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
+      this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
+
+    }
 
   }
 

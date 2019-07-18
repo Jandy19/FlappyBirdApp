@@ -208,8 +208,10 @@ class bGame extends Game {
         b.changeSprite(ShopScreen.link);
         if(ShopScreen.link=='trump.png'){
           background.changeBackground('brickWall.png');
-        }else{
-          background.changeBackground('background.png');
+        }else if(ShopScreen.link=='nyancat.png'){
+          background.changeBackground2(2);
+        }else if(ShopScreen.link=='monkey.png'){
+          background.changeBackground2(0);
         }
         lost = false;
         start = false;

@@ -54,6 +54,8 @@ flutter:
     - assets/audio/music.mp3
     - assets/images/longBack.png
     - assets/images/longBack2.png
+    - assets/images/spaceBackground.png
+    - assets/images/spaceBackground2.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -26,6 +26,9 @@ void main() async{
   Flame.images.load("brickWall.png");
   Flame.images.load("longBack.png");
   Flame.images.load("longBack2.png");
+  Flame.images.load("spaceBackground.png");
+  Flame.images.load("spaceBackground2.png");
+
   Flame.audio.load('buildWall.mp3');
   Flame.audio.load('music.mp3');
   if(cancer){
