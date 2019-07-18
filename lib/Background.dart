@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flame/components/parallax_component.dart';
 import 'package:flame/sprite.dart';
 
+
 class Background{
-  Sprite backgroundSprite;
+  Sprite background;
   Rect backgroundRect;
   Background(){
-    this.backgroundSprite = Sprite('background.png');
-    this.backgroundRect = Rect.fromLTWH(0,0,461,732);
+    loadBackground();
+
+  }
+  void loadBackground(){
+    background = Sprite('background.png');
+    backgroundRect = Rect.fromLTWH(0,0,430,732);
 
   }
   void render(Canvas canvas){
-    this.backgroundSprite.renderRect(canvas,this.backgroundRect);
+
+
+    this.background.renderRect(canvas,this.backgroundRect);
+
 
   }
 

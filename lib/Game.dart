@@ -12,7 +12,6 @@ import 'package:flappy_bird/ShopScreen.dart';
 
 
 
-
 class bGame extends Game {
 
   Size screenSize;
@@ -56,18 +55,17 @@ class bGame extends Game {
 
     background.render(canvas);
 
-    for (Pipe x in pipes){
-      x.render(canvas,paint);
-    }
-
-    b.render(canvas,50);
-
-
     TextSpan span = new TextSpan(style: new TextStyle(color: Colors.white,fontSize:30), text: '$score');
     TextPainter tp = new TextPainter(text: span, textAlign: TextAlign.left);
     tp.textDirection=TextDirection.ltr;
     tp.layout();
     tp.paint(canvas, new Offset(200, 30));
+
+    for (Pipe x in pipes){
+      x.render(canvas,paint);
+    }
+
+    b.render(canvas,50);
 
     score =0;
     for(Pipe x in pipes){
@@ -101,6 +99,7 @@ class bGame extends Game {
         deathScreen.render(canvas, paint, coins);
       }
     if(inShop){
+      changePrefsLink(sprites[index]);
       background.render(canvas);
       ShopScreen shopScreen = ShopScreen(coins);
       shopScreen.render(canvas,paint,b);
@@ -109,7 +108,7 @@ class bGame extends Game {
   }
   void updateCoinCount() async{
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     prefs.setInt("coinTotal",coins);
 
 
@@ -118,7 +117,7 @@ class bGame extends Game {
 
     DeathScreen.highScore = score;
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     prefs.setInt("highScore",score);
 
 
@@ -173,12 +172,13 @@ class bGame extends Game {
         }
         b.changeSprite(sprites[index]);
         if(sprites[index]!=ShopScreen.link) {
-          ShopScreen.cost = await getCost(index);
+          getCost(index);
           ShopScreen.current = false;
         }else{
+          getCost(index);
           ShopScreen.current = true;
         }
-      }if(d.globalPosition.dx > 300 && d.globalPosition.dx < 340 &&
+      }else if(d.globalPosition.dx > 300 && d.globalPosition.dx < 340 &&
           d.globalPosition.dy > 330 && d.globalPosition.dy < 370){
 
         index+=1;
@@ -190,7 +190,7 @@ class bGame extends Game {
           getCost(index);
           ShopScreen.current = false;
         }else{
-
+          getCost(index);
           ShopScreen.current = true;
 
         }
@@ -230,31 +230,30 @@ class bGame extends Game {
 
   }
   void updatePrefs(int index) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     if(index==1){
       prefs.setBool('ownTrump',true);
-    }if(index==0){
+    }if(index==2){
       prefs.setBool('ownNyanCat',true);
     }
 
 
   }
   void changePrefsLink(String link) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     DeathScreen.highScore = prefs.getInt("highScore");
     prefs.setString('currentLink',link);
 
   }
   getCost(int index) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     print(index);
     if(index==1){
       print(prefs.getBool('ownTrump'));
       if(prefs.getBool('ownTrump')==null) {
         print('Hey');
         ShopScreen.cost=costs[1];
-        print(ShopScreen.cost);
-      }else{
+      }else if(prefs.getBool('ownTrump')){
         ShopScreen.cost=0;
       }
     }else if(index==0){
@@ -264,10 +263,11 @@ class bGame extends Game {
       if(prefs.getBool('ownNyanCat')==null) {
         print('Hey');
         ShopScreen.cost=costs[2];
-        print(ShopScreen.cost);
-      }else{
+
+      }else if(prefs.getBool('ownNyanCat')){
         ShopScreen.cost=0;
-      }
+
+    }
     }
 
 

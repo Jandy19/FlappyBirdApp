@@ -23,10 +23,24 @@ class ShopScreen{
 
     bird.renderXY(canvas,100,160,300);
 
-    paint.color =Colors.red;
+    Path pathRight = Path();
 
-    canvas.drawRect(Rect.fromLTWH(110,330,20,40),paint);
-    canvas.drawRect(Rect.fromLTWH(300,330,20,40),paint);
+    pathRight.moveTo(110,350);
+    pathRight.lineTo(120,330);
+    pathRight.lineTo(120,370);
+    pathRight.close();
+
+    canvas.drawPath(pathRight,paint);
+
+    Path pathLeft = Path();
+
+    pathLeft.moveTo(310,350);
+    pathLeft.lineTo(300,330);
+    pathLeft.lineTo(300,370);
+    pathLeft.close();
+
+    canvas.drawPath(pathLeft,paint);
+
 
     paint.color = Colors.deepPurpleAccent;
     canvas.drawRect(Rect.fromLTWH(163,400,100,30),paint);
