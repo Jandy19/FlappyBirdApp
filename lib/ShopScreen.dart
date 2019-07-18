@@ -50,7 +50,6 @@ class ShopScreen{
     TextSpan buySpan;
     Offset offset;
     cost = ShopScreen.cost;
-    print(cost);
     current = ShopScreen.current;
     if(cost==0 && current) {
       buySpan = new TextSpan(style: new TextStyle(

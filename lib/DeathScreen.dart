@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'CoinSprite.dart';
 
 class DeathScreen{
   static int highScore;
@@ -12,8 +11,6 @@ class DeathScreen{
   }
   void render(Canvas canvas,Paint paint,int coins){
 
-    CoinSprite cs = CoinSprite();
-    cs.render(canvas);
 
     paint.color = Colors.deepPurple;
     canvas.drawRRect(this.deathScreenRRect,paint);

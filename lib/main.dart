@@ -5,8 +5,10 @@ import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'DeathScreen.dart';
+import 'package:flame/flame_audio.dart';
 
 void main() async{
+  bool cancer = false;
 
   Util flameUtil = Util();
   await flameUtil.fullScreen();
@@ -21,7 +23,15 @@ void main() async{
   Flame.images.load("coin.png");
   Flame.images.load("trump.png");
   Flame.images.load("nyancat.png");
-
+  Flame.images.load("brickWall.png");
+  Flame.images.load("longBack.png");
+  Flame.images.load("longBack2.png");
+  Flame.audio.load('buildWall.mp3');
+  Flame.audio.load('music.mp3');
+  if(cancer){
+    FlameAudio audio = new FlameAudio();
+    audio.loopLongAudio('music.mp3');
+  }
   bGame game = bGame();
   game.coins =prefs.getInt("coinTotal");
   String link = prefs.getString('currentLink');

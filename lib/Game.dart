@@ -10,8 +10,6 @@ import 'DeathScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flappy_bird/ShopScreen.dart';
 
-
-
 class bGame extends Game {
 
   Size screenSize;
@@ -29,6 +27,8 @@ class bGame extends Game {
   var inShop = false;
   var score=0;
   var coins;
+
+  bool cancer = false;
 
   void render(Canvas canvas){
     if(lost==false){
@@ -53,17 +53,23 @@ class bGame extends Game {
     Paint paint = Paint();
     paint.color = Colors.blue;
 
-    background.render(canvas);
+    background.render(canvas,paint,b.isTrump,cancer);
 
+    if(b.isTrump){
+      background.changeBackground('brickWall.png');
+    }else{
+      background.changeBackground('longBack.png');
+    }
+
+
+    for (Pipe x in pipes){
+      x.render(canvas,paint,b.isTrump,cancer);
+    }
     TextSpan span = new TextSpan(style: new TextStyle(color: Colors.white,fontSize:30), text: '$score');
     TextPainter tp = new TextPainter(text: span, textAlign: TextAlign.left);
     tp.textDirection=TextDirection.ltr;
     tp.layout();
     tp.paint(canvas, new Offset(200, 30));
-
-    for (Pipe x in pipes){
-      x.render(canvas,paint);
-    }
 
     b.render(canvas,50);
 
@@ -92,15 +98,16 @@ class bGame extends Game {
 
         updateCoinCount();
 
-        background.render(canvas);
+        background.render(canvas,paint,b.isTrump,cancer);
 
         DeathScreen deathScreen = DeathScreen(score);
-        print('Coins: $coins');
         deathScreen.render(canvas, paint, coins);
       }
     if(inShop){
       changePrefsLink(sprites[index]);
-      background.render(canvas);
+      ShopScreen.link = sprites[index];
+      background.render(canvas,paint,b.isTrump,cancer);
+
       ShopScreen shopScreen = ShopScreen(coins);
       shopScreen.render(canvas,paint,b);
     }
@@ -199,6 +206,11 @@ class bGame extends Game {
       }if(d.globalPosition.dx > 95 && d.globalPosition.dx < 135 &&
           d.globalPosition.dy > 220 && d.globalPosition.dy < 250){
         b.changeSprite(ShopScreen.link);
+        if(ShopScreen.link=='trump.png'){
+          background.changeBackground('brickWall.png');
+        }else{
+          background.changeBackground('background.png');
+        }
         lost = false;
         start = false;
         b.y = 730/2;
@@ -247,11 +259,8 @@ class bGame extends Game {
   }
   getCost(int index) async{
     var prefs = await SharedPreferences.getInstance();
-    print(index);
     if(index==1){
-      print(prefs.getBool('ownTrump'));
       if(prefs.getBool('ownTrump')==null) {
-        print('Hey');
         ShopScreen.cost=costs[1];
       }else if(prefs.getBool('ownTrump')){
         ShopScreen.cost=0;
@@ -259,9 +268,7 @@ class bGame extends Game {
     }else if(index==0){
       ShopScreen.cost =0;
     }else if(index==2){
-      print(prefs.getBool('ownNyanCat'));
       if(prefs.getBool('ownNyanCat')==null) {
-        print('Hey');
         ShopScreen.cost=costs[2];
 
       }else if(prefs.getBool('ownNyanCat')){
