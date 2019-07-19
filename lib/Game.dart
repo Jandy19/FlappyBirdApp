@@ -276,7 +276,7 @@ class bGame extends Game {
 
     var prefs = await SharedPreferences.getInstance();
     DeathScreen.highScore = prefs.getInt("highScore");
-    
+
     prefs.setString('currentLink',link);
 
   }

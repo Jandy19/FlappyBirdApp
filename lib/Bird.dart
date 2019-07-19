@@ -10,7 +10,7 @@ class Bird{
   var birdComponent;
   bool isTrump = false;
 
-  Bird(String link,{this.x = 75,this.y = 730 / 2}){
+  Bird(String link,{this.x = 50,this.y = 730 / 2}){
     this.speed = 1;
     // Deciding whether or not trump is the sprite
     if(link == 'trump.png'){
@@ -26,7 +26,7 @@ class Bird{
     // Changing the speed so the bird falls up and resetting the angle of the image to normal
     this.speed =- 6;
     this.birdComponent.angle = 0.0;
-
+    this.birdComponent.x = 50.0;
   }
 
   void fall(){
@@ -41,14 +41,18 @@ class Bird{
         this.birdComponent.angle = pi/12;
       }else if(this.speed == 3){
         this.birdComponent.angle = 2 * pi / 12;
+        this.birdComponent.x += 50 * sin(this.birdComponent.angle);
       }else if(this.speed == 4){
         this.birdComponent.angle = 3 * pi / 12;
+        this.birdComponent.x +=50 * sin(this.birdComponent.angle);
       }else if(this.speed == 5){
         this.birdComponent.angle = 5 * pi / 12;
+        this.birdComponent.x += 50 * sin(this.birdComponent.angle);
       }else if(this.speed == 7 ){
         this.birdComponent.angle = pi / 2;
+        this.birdComponent.x +=50 * sin(this.birdComponent.angle);
       }
-      this.birdComponent.x += 50 * sin(this.birdComponent.angle);
+
     }
 
   }
@@ -61,7 +65,7 @@ class Bird{
   void render(Canvas canvas, double height) {
     // Updating the birds position
     this.birdComponent.y = this.y;
-
+    this.birdComponent.x = this.x;
     // Rendering the bird to the screen
     birdComponent.render(canvas);
 
