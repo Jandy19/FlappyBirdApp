@@ -42,20 +42,24 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    # Sprite Assets
     - assets/images/monkey.png
-    - assets/images/background.png
     - assets/images/goldCoin.png
-    - assets/images/coin.png
     - assets/images/trump.png
     - assets/images/nyancat.png
-    - assets/audio/buildWall.mp3
-    - assets/images/brickWall.png
-    - assets/images/cancerFace.png
-    - assets/audio/music.mp3
+
+    # Background Assets
     - assets/images/longBack.png
     - assets/images/longBack2.png
+    - assets/images/brickWall.png
     - assets/images/spaceBackground.png
     - assets/images/spaceBackground2.png
+
+    # Audio Assets
+    - assets/audio/buildWall.mp3
+    - assets/audio/music.mp3
+    - assets/audio/nyancat.mp3
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -51,7 +51,7 @@ class Pipe{
     this.showCoin = false;
 
   }
-  void render(Canvas canvas,Paint paint,bool isTrump, bool cancer){
+  void render(Canvas canvas,Paint paint,int index, bool cancer){
     if(cancer) {
       RandomColor _randomColor = RandomColor();
 
@@ -71,7 +71,7 @@ class Pipe{
 
     }
     }else{
-      if (isTrump) {
+      if (index==1) {
         Rect rect = Rect.fromLTWH(x, 0, width, y1);
         Rect rect2 = Rect.fromLTWH(x, y2, width, 750 - y2);
 
@@ -108,7 +108,7 @@ class Pipe{
               canvas, Rect.fromLTWH(x + 10, y1 + spacing / 2, 16, 16));
           goldCoin.update(0.01);
         }
-      } else {
+      } else if(index==0){
         Rect rect = Rect.fromLTWH(x, 0, width, y1);
         Rect rect2 = Rect.fromLTWH(x, y2, width, 750 - y2);
 
@@ -120,6 +120,65 @@ class Pipe{
               canvas, Rect.fromLTWH(x + 10, y1 + spacing / 2, 16, 16));
           goldCoin.update(0.01);
         }
+      }else if(index==2){
+        Rect rect = Rect.fromLTWH(x, 0, width, y1);
+        Rect rect2 = Rect.fromLTWH(x, y2, width, 750 - y2);
+
+        paint.color = Colors.red;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+        rect = Rect.fromLTWH(x + width / 7, 0, 6 * width / 7, y1);
+        rect2 = Rect.fromLTWH(x + width / 7, y2, 6 * width / 7, 750 - y2);
+
+        paint.color = Colors.orange;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+        rect = Rect.fromLTWH(x + 2 * width / 7, 0, 5*width / 7, y1);
+        rect2 = Rect.fromLTWH(x + 2 * width / 7, y2, 5 * width / 7, 750 - y2);
+
+        paint.color = Colors.yellow;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+        rect = Rect.fromLTWH(x + 3 * width / 7, 0, 4*width / 7, y1);
+        rect2 = Rect.fromLTWH(x + 3 * width / 7, y2, 4*width / 7, 750 - y2);
+
+        paint.color = Colors.green;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+
+         rect = Rect.fromLTWH(x+4*width/7, 0, 3*width/7, y1);
+         rect2 = Rect.fromLTWH(x+4*width/7, y2, 3*width/7, 750 - y2);
+
+        paint.color = Colors.lightBlueAccent;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+        rect = Rect.fromLTWH(x + 5*width / 7, 0, 2 * width / 7, y1);
+        rect2 = Rect.fromLTWH(x+4*width/7, y2, 2 * width / 7, 750 - y2);
+
+        paint.color = Colors.blue;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+        rect = Rect.fromLTWH(x + 6 * width / 7, 0, width / 7, y1);
+        rect2 = Rect.fromLTWH(x + 6 * width / 7, y2,width / 7, 750 - y2);
+
+        paint.color = Colors.indigo;
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect2, paint);
+
+
+
+        if (showCoin) {
+          goldCoin.getSprite().renderRect(
+              canvas, Rect.fromLTWH(x + 10, y1 + spacing / 2, 16, 16));
+          goldCoin.update(0.01);
+        }
+
       }
     }
     }

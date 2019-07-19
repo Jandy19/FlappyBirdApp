@@ -6,12 +6,11 @@ class ShopScreen{
 
   RRect shopScreenRRect;
   int coins;
-  static int cost =0;
+  static int cost = 0;
   static bool current = true;
-  static String link='monkey.png';
+  static String link = 'monkey.png';
   ShopScreen(this.coins){
     this.shopScreenRRect = RRect.fromRectAndRadius(Rect.fromLTWH(75,200,275,300),Radius.circular(10));
-
   }
   void render(Canvas canvas,Paint paint,Bird bird){
 
@@ -51,12 +50,12 @@ class ShopScreen{
     Offset offset;
     cost = ShopScreen.cost;
     current = ShopScreen.current;
-    if(cost==0 && current) {
+    if(cost == 0 && current) {
       buySpan = new TextSpan(style: new TextStyle(
           color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           text: 'Current');
       offset = new Offset(180, 403);
-    }else if(cost==0 && !current) {
+    }else if(cost == 0 && !current) {
       buySpan = new TextSpan(style: new TextStyle(
           color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           text: 'Choose');
@@ -73,15 +72,15 @@ class ShopScreen{
     TextPainter tp3 = new TextPainter(text: buySpan, textAlign: TextAlign.left);
 
 
-    tp.textDirection=TextDirection.ltr;
+    tp.textDirection = TextDirection.ltr;
     tp.layout();
     tp.paint(canvas, new Offset(250, 230));
 
-    tp2.textDirection=TextDirection.ltr;
+    tp2.textDirection = TextDirection.ltr;
     tp2.layout();
     tp2.paint(canvas, new Offset(105, 230));
 
-    tp3.textDirection=TextDirection.ltr;
+    tp3.textDirection = TextDirection.ltr;
     tp3.layout();
     tp3.paint(canvas, offset);
 

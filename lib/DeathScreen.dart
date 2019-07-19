@@ -5,12 +5,11 @@ class DeathScreen{
 
   RRect deathScreenRRect;
   int score;
+
   DeathScreen(this.score){
     this.deathScreenRRect = RRect.fromRectAndRadius(Rect.fromLTWH(75,200,275,300),Radius.circular(10));
-
   }
   void render(Canvas canvas,Paint paint,int coins){
-
 
     paint.color = Colors.deepPurple;
     canvas.drawRRect(this.deathScreenRRect,paint);
@@ -33,19 +32,19 @@ class DeathScreen{
     TextPainter tp4 = new TextPainter(text: shopSpan, textAlign: TextAlign.left);
 
 
-    tp.textDirection=TextDirection.ltr;
+    tp.textDirection = TextDirection.ltr;
     tp.layout();
     tp.paint(canvas, new Offset(125, 250));
 
-    tp2.textDirection=TextDirection.ltr;
+    tp2.textDirection = TextDirection.ltr;
     tp2.layout();
     tp2.paint(canvas, new Offset(125, 280));
 
-    tp3.textDirection=TextDirection.ltr;
+    tp3.textDirection = TextDirection.ltr;
     tp3.layout();
     tp3.paint(canvas, new Offset(165, 408));
 
-    tp4.textDirection=TextDirection.ltr;
+    tp4.textDirection = TextDirection.ltr;
     tp4.layout();
     tp4.paint(canvas, new Offset(140, 358));
 

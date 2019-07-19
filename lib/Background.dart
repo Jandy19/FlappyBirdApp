@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/sprite.dart';
 import 'package:random_color/random_color.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/flame_audio.dart';
 
 class Background{
   Sprite background;
@@ -10,7 +11,6 @@ class Background{
 
   var backgroundComponent;
   var backgroundComponent2;
-
 
   Background(){
     loadBackground();
@@ -21,8 +21,8 @@ class Background{
     var background2 = Sprite('longBack2.png');
     this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
     this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
-    this.backgroundComponent.x=0.0;
-    this.backgroundComponent2.x=1280.0;
+    this.backgroundComponent.x = 0.0;
+    this.backgroundComponent2.x = 1280.0;
     backgroundRect = Rect.fromLTWH(0,0,430,732);
 
   }
@@ -38,47 +38,47 @@ class Background{
     }else if(isTrump){
       background.renderRect(canvas,backgroundRect);
     }else{
-
-      if(this.backgroundComponent.x< -1280.0){
-        this.backgroundComponent.x= 1280.0;
-      }if(this.backgroundComponent2.x< -1280){
-        this.backgroundComponent2.x=1280.0;
-
+      if(this.backgroundComponent.x < -1280.0){
+        this.backgroundComponent.x = 0.0;
       }
-      print(this.backgroundComponent.x);
-      print(this.backgroundComponent2.x);
-      this.backgroundComponent.x -= 0.5;
-      this.backgroundComponent2.x -= 0.5;
-      bool restored = false;
-      if(this.backgroundComponent.x<430&&this.backgroundComponent.x>-1280){
+      this.backgroundComponent.x -= 0.2;
+
       this.backgroundComponent.render(canvas);
-          canvas.restore();
+      this.backgroundComponent2.render(canvas);
 
-      }if(this.backgroundComponent2.x<430&&this.backgroundComponent2.x>-1280){
-        this.backgroundComponent2.render(canvas);
-          canvas.restore();
-
+      canvas.restore();
 
     }
-    }
-
   }
   void changeBackground(String link){
     background = Sprite(link);
-
   }
   void changeBackground2(int index){
-    if(index==0){
+    if(index == 0){
       background = Sprite('longBack.png');
       var background2 = Sprite('longBack2.png');
-      this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
-      this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
-    }else if(index==2){
-      background = Sprite('spaceBackground.png');
-      var background2 = Sprite('spaceBackground.png');
+
       this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
       this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
 
+      this.backgroundComponent.x = 0.0;
+      this.backgroundComponent2.x = 1280.0;
+
+      FlameAudio audio = new FlameAudio();
+      audio.loopLongAudio('');
+
+    }else if(index == 2){
+      background = Sprite('spaceBackground.png');
+      var background2 = Sprite('spaceBackground.png');
+
+      this.backgroundComponent = SpriteComponent.fromSprite(1280.0, 732.0, this.background);
+      this.backgroundComponent2 = SpriteComponent.fromSprite(1280.0, 732.0, background2);
+
+      this.backgroundComponent.x = 0.0;
+      this.backgroundComponent2.x = 1280.0;
+
+      FlameAudio audio = new FlameAudio();
+      audio.loopLongAudio('nyancat.mp3');
     }
 
   }
